@@ -4,7 +4,7 @@ module.exports = {
   AllBooksModel: function (param) {
     return new Promise((resolve, reject) => {
       conn.query(
-        `SELECT id, rak,book_detail.id_genre,pdf_name, book_detail.id_author, title, stok, image, name_author, profile_author, name_genre, ISBN, edition, TraceContents, placePublication, DiscriptionBook, publisher, classification, year, bibiografi, Iindex, collation,note, author2, number_investaris,no_call1, no_call2, no_call3, info_1, info_2 FROM book_detail INNER JOIN genre ON book_detail.id_genre = genre.id_genre INNER JOIN author ON book_detail.id_author = author.id_author ${param.byfield}${param.sort}${param.page}${param.antrian6}${param.catalog3}`,
+        `SELECT id, rak,book_detail.id_genre,pdf_name, book_detail.id_author, title, stok, image, name_author, profile_author, name_genre, ISBN, edition, TraceContents, DiscriptionBook, publisher, year, bibiografi, Iindex, collation,note, author2, number_investaris,no_call1, no_call2, no_call3, info_1, info_2 FROM book_detail INNER JOIN genre ON book_detail.id_genre = genre.id_genre INNER JOIN author ON book_detail.id_author = author.id_author ${param.byfield}${param.sort}${param.page}${param.antrian6}${param.catalog3}`,
         function (error, result) {
           if (error) {
             reject(error);
