@@ -60,7 +60,7 @@ module.exports = {
   AddUsers: function (setData) {
     return new Promise((resolve, reject) => {
       conn.query(
-        `INSERT INTO users(name_user, class, role, majors, nik) VALUES('${setData.name_user}', '${setData.class}', '${setData.role}', '${setData.majors}', '${setData.nik}')`,
+        `INSERT INTO users(name_user, class, role, majors, letter,nik, address, hp, image) VALUES('${setData.name_user}', '${setData.class}', '${setData.role}', '${setData.majors}', '${setData.letter}', '${setData.nik}', '${setData.address}', ${setData.hp}, '${setData.image}')`,
         function (error, result) {
           if (error) {
             reject(error);
@@ -95,7 +95,7 @@ module.exports = {
   UpdatedUsers: function (setData, id) {
     return new Promise((resolve, reject) => {
       conn.query(
-        `UPDATE users SET name_user = '${setData.name_user}', class = '${setData.class}', majors = '${setData.majors}', nik = '${setData.nik}' WHERE id_user = '${id}'`,
+        `UPDATE users SET ? WHERE ?`, [setData, id],
         function (error, result) {
           if (error) {
             reject(error);

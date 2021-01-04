@@ -50,11 +50,11 @@ module.exports = {
       id_genre: request.body.id_genre,
       id_author: request.body.id_author,
       ISBN: request.body.isbn,
-      classification: request.body.classification,
+      
       edition: request.body.edition,
       TraceContents: request.body.TraceContents,
       DiscriptionBook: request.body.DiscriptionBook,
-      PlacePublication: request.body.placePublication,
+      
       year: request.body.year,
       publisher: request.body.publisher,
       bibiografi: request.body.bibiografi,

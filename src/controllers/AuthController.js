@@ -117,16 +117,22 @@ module.exports = {
   addUsers: async function (request, response) {
     try {
       // conditions for paginations, search, sort
+      // conditions for paginations, search, sort
       let setData = {
         name_user: request.body.name_user,
         class: request.body.class,
         role: request.body.role,
         majors: request.body.majors,
         nik: request.body.nik,
+        image: `src/upload/${request.file.filename}`,
+        hp: request.body.hp,
+        address: request.body.address
       };
 
       let result = await AuthModels.AddUsers(setData);
       return helper.response(response, "success", result, 201);
+
+      console.log(request.file)
     } catch (error) {
       console.log(error);
       return helper.response(response, "fail", "Internal Server Error", 500);
@@ -147,18 +153,22 @@ module.exports = {
   },
 
   updateUsers: async function (request, response) {
+    id = request.params.id;
+    let param = `WHERE id_user = '${id}'`
+    let resultImage = await AuthModels.GetUsers(param)
     try {
       // conditions for paginations, search, sort
-      id = request.params.id;
-      let setData = {
-        name_user: request.body.name_user,
-        class: request.body.class,
-        role: request.body.role,
-        majors: request.body.majors,
-        nik: request.body.nik,
-      };
-
-      console.log(setData);
+    let setData = {
+      name_user: request.body.name_user,
+      class: request.body.class,
+      role: request.body.role,
+      majors: request.body.majors,
+      nik: request.body.nik,
+      image: request.file == null ? resultImage[0].image : `src/upload/${request.file.filename}`,
+      hp: request.body.hp,
+      address: request.body.address
+    };
+     
       let result = await AuthModels.UpdatedUsers(setData, id);
       return helper.response(response, "success", result, 201);
     } catch (error) {
