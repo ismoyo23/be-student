@@ -6,6 +6,7 @@ let cors = require('cors')
 let morgan = require('morgan')
 app.use(morgan('dev'))
 
+
 let conn = require('./src/helper/mysql')
 
 app.use(BodyParser.urlencoded({extended: true}))
@@ -20,10 +21,11 @@ app.use('/src', express.static(path.join(__dirname + '/src')))
 let router = require('./src/index')
 
 
-// use cors
-app.use(cors())
 
-app.use('/', cors(), router)
+// use cors
+app.use(cors('*'))
+
+app.use('/', cors('*'), router)
 
 conn.connect(function(error){
     if(error) throw error;

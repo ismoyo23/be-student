@@ -1,18 +1,11 @@
 var express = require("express");
 let router = express.Router();
 
-// for librarian
-let Books = require("./router/Books");
-let BooksGenre = require("./router/BooksGenre");
-let BooksAuthor = require("./router/BooksAuthor");
-let Auth = require("./router/AuthRouter");
-let BooksBorrower = require("./router/BooksBorrower");
-let Absence = require("./router/AbsenceRouter");
+let Auth = require("./router/AuthRouter")
+let Home = require("./router/Home");
 
-router.use("/books", Books);
-router.use("/books/genre", BooksGenre);
-router.use("/books/author", BooksAuthor);
-router.use("/Books/borrower", BooksBorrower);
-router.use("/books/", Auth);
-router.use("/books/absence", Absence);
+
+router.use("/home", Home);
+router.use("/auth", Auth);
+
 module.exports = router;
