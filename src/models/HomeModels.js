@@ -14,7 +14,7 @@ module.exports = {
 
     ReportDataModels: function(date_from, date_to, by){
         return new Promise((resolve, reject) => {
-            conn.query(`SELECT jurusan.nama_jurusan, kelas.nama_kelas, reportabsence.status, reportabsence.tanggal, COUNT(*) as count FROM reportabsence INNER JOIN jurusan ON jurusan.id_jurusan = reportabsence.id_jurusan INNER JOIN kelas ON kelas.id_kelas = reportabsence.id_kelas WHERE reportabsence.tanggal BETWEEN '${date_from}' AND '${date_to}' GROUP BY ${by}`, function(error,result){
+            conn.query(`SELECT jurusan.nama_jurusan, kelas.nama_kelas, reportabsence.status, reportabsence.tanggal, COUNT(*) as count FROM reportabsence INNER JOIN jurusan ON jurusan.id_jurusan = reportabsence.id_jurusan INNER JOIN kelas ON kelas.id_kelas = reportabsence.id_kelas WHERE reportabsence.tanggal BETWEEN '${date_from}' AND '${date_to}' AND status = 'masuk' GROUP BY ${by}`, function(error,result){
                 if(error){
                     reject(error)
                 }
